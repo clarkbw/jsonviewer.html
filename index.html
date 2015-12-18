@@ -9,8 +9,8 @@
         <style>
 
         </style>
-        <link rel="stylesheet" href="css/main.css">
-        <script src="lib/require.js"></script>
+        <link rel="stylesheet" href="./css/main.css">
+        <script src="./lib/require.js"></script>
     </head>
     <body>
         <div id="content"></div>
@@ -20,9 +20,9 @@
         require.config({
           baseUrl: ".",
           paths: {
-            "react": "node_modules/react/dist/react-with-addons",
-            "react-dom": "node_modules/react-dom/dist/react-dom",
-            "text": "node_modules/text/text"
+            "react": "./node_modules/react/dist/react-with-addons",
+            "react-dom": "./node_modules/react-dom/dist/react-dom",
+            "text": "./node_modules/text/text"
           }
         });
 
@@ -36,12 +36,10 @@
           }
         };
 
-        require(["text!test/array_json.json",
-                 "text!test/simple_json.json",
-                 "text!test/valid_json.json"],
+        require(["text!./test/array_json.json",
+                 "text!./test/simple_json.json",
+                 "text!./test/valid_json.json"],
             function(arrayJson, simpleJson, validJson) {
-              console.log('arrayJson', arrayJson);
-              console.log('simpleJson', simpleJson);
               document.getElementById('json').textContent = arrayJson;
               document.getElementById('headers').textContent = JSON.stringify({
                 response: [],
