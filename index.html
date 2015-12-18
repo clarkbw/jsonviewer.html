@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+
+        </style>
+        <link rel="stylesheet" href="css/main.css">
+        <script src="lib/require.js"></script>
+    </head>
+    <body>
+        <div id="content"></div>
+        <div id="json"></div>
+        <div id="headers"></div>
+        <script>
+        require.config({
+          baseUrl: ".",
+          paths: {
+            "react": "node_modules/react/dist/react-with-addons",
+            "react-dom": "node_modules/react-dom/dist/react-dom",
+            "text": "node_modules/text/text"
+          }
+        });
+
+        let Locale = {
+          $STR: key => {
+            try {
+              return (key);
+            } catch (err) {
+              console.error(err);
+            }
+          }
+        };
+
+        require(["text!test/array_json.json",
+                 "text!test/simple_json.json",
+                 "text!test/valid_json.json"],
+            function(arrayJson, simpleJson, validJson) {
+              console.log('arrayJson', arrayJson);
+              console.log('simpleJson', simpleJson);
+              document.getElementById('json').textContent = arrayJson;
+              document.getElementById('headers').textContent = JSON.stringify({
+                response: [],
+                request: []
+              });
+              requirejs(["json-viewer"]);
+            }
+        );
+
+        </script>
+    </body>
+</html>
